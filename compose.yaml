@@ -1,0 +1,24 @@
+services:
+
+  db:
+    image: postgres:16
+    container_name: orderpay-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: orderpay
+      POSTGRES_USER: orderpay
+      POSTGRES_PASSWORD: orderpay
+    ports:
+      - "5432:5432"
+    volumes:
+      - orderpay_pgdata:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    container_name: orderpay-adminer
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+
+volumes:
+  orderpay_pgdata:
